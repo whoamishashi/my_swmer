@@ -40,8 +40,6 @@ def classifyShape(img):
     contours, hierarchy = cv2.findContours(morph, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     if not contours: return None
     contours_good = [c for c in contours if cv2.contourArea(c)>1000]
-    contours_draw = np.zeros(morph.shape, np.uint8)
-    cv2.drawContours(contours_draw, contours_good, -1, (255,255,255), -1)
 
     #get largest contour
     areas = [cv2.contourArea(c) for c in contours_good]
@@ -57,10 +55,7 @@ def classifyShape(img):
     ellipse=cv2.fitEllipse(largest_contour)
     ((centx,centy), (MA, ma), angle) = ellipse
     centX_ellipse0, centY_ellipse0 = (int(centx), int(centy))
-    cv2.ellipse(contours_draw,ellipse,(255,255,255),1)
-    cv2.circle(contours_draw, (centX_ellipse0, centY_ellipse0), 7, (255, 0, 0) , 10)
-    cv2.circle(contours_draw, (centX_contour0, centY_contour0), 7, (0, 255, 0), 10)
-    
+
     #identify
     dist = math.sqrt( (centX_contour0-centX_ellipse0)**2 + (centY_contour0-centY_ellipse0)**2 )
     identifier = ''
