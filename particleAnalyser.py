@@ -193,7 +193,7 @@ def processCellid(file_npy):
     
     return (cellid, shapes)
 
-def myMain():
+def main():
     cellids_mercury = [6930198]
     root_mercury = r'/home/shashikant/Desktop/Esa/my_data/particle_velocity_space_files/vBE_particles_mercury_runset06run01/'
     
@@ -202,4 +202,5 @@ def myMain():
         # (cellid, shapes) = processCellid(root_mercury + 'vBE_particles_cellid_'+str(cellid)+'_sw_protons.dat.npy')
         print (cellid, shapes)
 
-myMain()
+if __name__ == "__main__":
+    main()
